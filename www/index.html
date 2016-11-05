@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <title>Unimove</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB6TVPKavQB_J-GimZl3W0onN8Lkf4ad4Y&amp;"></script>
+
+
+
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="text/javascript" src="js/gmap3.js"></script>
+         <!-- Caixa de informação -->
+         <script src="js/infobox.js"></script>
+         <!-- Agrupamento dos marcadores -->
+         <script src="js/markerclusterer.js"></script>
+         <!-- Arquivo de inicialização do mapa -->
+         <!-- <script src="js/maps.js"></script>-->
+
+
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+          <script src="js/app.js"></script>
+          <script src="js/fastclick.js"></script>
+          <script src="js/LoginController.js"></script>
+          <script src="js/CadastroController.js"></script>
+          <script src="js/EsqueciController.js"></script>
+          <script src="js/WEBSERVICE.js"></script>
+          <script src="js/ConfiguracoesController.js"></script>
+
+
+
+          <script src="js/foto.js"></script>
+
+
+      <script>
+      navigator.splashscreen.hide();
+      function checkConnection() {
+      var networkState = navigator.connection.type;
+      var states = {};
+      states[Connection.UNKNOWN]  = 'Unknown connection';
+      states[Connection.ETHERNET] = 'Ethernet connection';
+      states[Connection.WIFI]     = 'WiFi connection';
+      states[Connection.CELL_2G]  = 'Cell 2G connection';
+      states[Connection.CELL_3G]  = 'Cell 3G connection';
+      states[Connection.CELL_4G]  = 'Cell 4G connection';
+      states[Connection.CELL]     = 'Cell generic connection';
+      states[Connection.NONE]     = 'No network connection';
+
+      //alert(states[networkState]);
+      if(states[networkState]=='No network connection'){
+        abreSemConexao();
+      }
+      }
+
+
+          </script>
+
+
+          <script>
+
+          //listapublicidade();
+          window.addEventListener('load', function() {
+          FastClick.attach(document.body);
+          //navigator.geolocation.watchPosition(onSuccess, onError);
+
+          document.getElementById('entrar').addEventListener('touchmove', function(e) {
+                  e.preventDefault();
+            }, false);
+
+          }, false);
+
+
+
+          document.addEventListener("deviceready", onDeviceReady, false);
+                 // device APIs are available
+                 //
+               function onDeviceReady() {
+               document.addEventListener("backbutton", onBackKeyDown, false);
+           //intel.xdk.device.hideStatusBar();
+           }
+                 // Handle the back button
+                 //
+          function onBackKeyDown() {
+           //navigator.app.exitApp();
+           $('#abreHome').trigger('click');
+           }
+
+
+          </script>
+
+          <script>
+
+      		var sistema = getMobileOperatingSystem();
+
+      			if(sistema=='iOS'){
+      				defineSO('ios');
+      			}else{
+      				defineSO('android');
+
+      			}
+
+
+      		</script>
+
+  </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+
+
+
+        <div id="div_tokens"></div>
+
+        <input type="hidden" id="pagina">
+        <input type="hidden" id="id_campo_categoria">
+        <input type="hidden" id="id_campo_categoria">
+        <input type="hidden" id="latitude_put">
+        <input type="hidden" id="longetude_put">
+
+
+        <button class="hidden" id="irPaginaFeeds">Feeds</button>
+        <button class="hidden" id="irPaginaMSG">Feeds</button>
+        <button class="hidden" id="irPaginaMSGSlide">Feeds</button>
+        <button class="hidden" id="AbreperfilUser">Feeds</button>
+        <button class="hidden" id="irPaginaPerfil">Feeds</button>
+        <button class="hidden" id="irPaginaPerfil">Feeds</button>
+        <button class="hidden" id="irPaginaBase">Feeds</button>
+        <button class="hidden" id="irPaginaMapa">Feeds</button>
+
+        <input type="hidden" style="position:fixed; z-index:555;"id="i_foto">
+
+
+        <button class="hidden" id="conexaoVerifica "onclick="checkConnection();">Conexao</button>
+
+
+        <button class="hidden" onclick="LoginToFB();">Logar Face</button>
+        <span id='statusFB'></span>
+
+
+
+        <input type="hidden" id="paginacaoFeeds">
+        <input type="hidden" id="lsPaginacao">
+        <input type="hidden" id="feedsUser">
+        <input type="hidden" id="vEmail">
+
+
+        <input type="hidden" id="tipoDePlataforma_" value="android">
+        <input type="hidden" id="gcm_id" value="asdf154ddsfsa">
+        <input type="hidden" id="iDPush">
+
+
+        <input type="hidden" id="ref_pagina">
+        <div class="mascara" id="mascara" onclick="mascara();"></div>
+        <div class="mascara2" id="mascara2"><img src="images/load.gif"><br><span id="loadd_"></span></div>
+
+
+        <div class="html" id="html">
+         <div class="btn-back-votar offClick" id="fecharHtml" onclick="fecharHtml()"></div>
+         <div id="titulo-html"></div>
+         <div id="conteudo-retorno"></div>
+        </div>
+
+        <!-- INICIO: pagina INICIAL -->
+         <div class="upage vertical-col left Bkginicial" id="mainpage" >
+
+         </div>
+        <!-- FIM: pagina INICIAL -->
+
+
+        <!-- INICIO: pagina Entrar -->
+        <div class="upage hidden" id="entrar">
+            <div class="upage-outer">
+              <div class="logo_top_Inicio"></div>
+
+
+
+              <div class="offClick btn_padrao" id="irPaginaLogin" style="margin-top:22%">
+                <a href="javascript:void(0);" class="bt-destaque">
+
+                  Entrar
+                </a>
+              </div>
+
+              <div class="offClick btn_padrao" id="irPaginaCadastro" style="margin-top:3%">
+                <a href="javascript:void(0);" class="bt-destaque">
+
+                  Cadastrar-se
+                </a>
+              </div>
+
+              <div class="txttituloHome">
+
+              </div>
+
+              <div class="txtData" style="margin-top:7%; ">
+      					2016
+      				</div>
+
+
+               <!-- id="irPaginaCadastro"-->
+
+            </div>
+        </div>
+        <!-- FIM: pagina Entrar -->
+
+        <!-- INICIO: pagina LOGIN -->
+        <div class="upage hidden" id="login">
+            <div class="upage-outer">
+
+                <div class="logo_top_Inicio_logins up"></div>
+
+                <div class="hidden btn-login-txt up"></div>
+                <div class="hidden btn-login-face offClick up"></div>
+
+                <div class="btn-back-votar offClick up" id="Entrar"></div>
+
+
+
+                <div class="row_padrao">
+
+                <div class="col_meio_center place_">
+                  <span class="titulo_input_">E-MAIL</span><br>
+                  <input type="text"  class="input_novo2_" id="campo-login-email"  value="admin@gmail.com" style="width:100%;" placeholder="Digite o E-mail">
+                </div>
+
+                <div class="col_meio_center place_">
+                  <span class="titulo_input_">SENHA</span><br>
+                  <input type="password" maxlength="13" class="input_novo2_"  style="width:100%;" id="campo-login-senha" value="123456" placeholder="Sua Senha">
+                </div>
+
+                    <!--<div class="offClick btn_padrao" onclick="fazLogin();" style="margin-top:10px;">-->
+                  <div class="offClick btn_padrao" onclick="loginCriado();" style="margin-top:10px;">
+                  <a href="javascript:void(0);" class="bt-destaqueEntrada">
+                    <i class=""></i>
+                    Entrar
+                  </a>
+
+                </div>
+
+                <div class="txt-esqueci-senha" id="irPaginaEsqueci">ESQUECI A SENHA</div>
+                <div class="error_azul" id="erro_login"></div>
+
+
+
+
+              </div>
+
+
+
+
+            </div>
+        </div>
+        <!-- FIM: pagina LOGIN -->
+
+
+        <!-- INICIO: pagina CADASTRO -->
+        <div class="upage hidden" id="cadastro">
+            <div class="upage-outer">
+
+                <div class="logo_top_Inicio_logins"></div>
+
+                <div class="hidden btn-login-txt-cadastro"></div>
+                <div class="hidden btn-login-face offClick"></div>
+
+
+                <div class="btn-back-votar offClick" id="Entrar"></div>
+
+
+
+                  <div class="row_padrao">
+
+
+
+
+
+                  <div class="col_meio_center place_">
+                    <span class="titulo_input_">E-MAIL</span><br>
+                    <input type="text" maxlength="60" class="input_novo2_" id="email_cadastro"  onfocus="onfocusInput(23);" onblur="DesonfocusInput(69);"  placeholder="Digite o E-mail">
+                  </div>
+
+                  <div class="col_meio_center place_">
+                    <span class="titulo_input_">CELULAR</span><br>
+                    <input type="tel" maxlength="13" class="input_novo2_" id="celular_cadastro" placeholder="00-0000-00000">
+                  </div>
+
+
+
+
+                  <div class="col_meio_center place_">
+                    <span class="titulo_input_">SENHA</span><br>
+                    <input type="password" maxlength="13" onfocus="onfocusInput(23);" onblur="DesonfocusInput(69);"  id="senha_cadastro" class="input_novo2_" placeholder="">
+                  </div>
+
+                    <div class="offClick btn_padrao" id="irPaginaLoginx" onClick="cadastra();">
+                    <!--<div class="offClick btn_padrao" id="irPaginaLoginx" onClick="loginCriado();">-->
+                    <a href="javascript:void(0);" class="bt-destaqueEntrada">
+                      <i class=""></i>
+                      Registrar-me
+                    </a>
+
+                  </div>
+                  <div class="error_azul" id="erro_cadastro"></div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!-- FIM: pagina CADASTRO -->
+
+
+        <!-- INICIO: pagina CADASTRO -->
+        <div class="upage hidden" id="comecar" >
+            <div class="upage-outer">
+
+                <div class="logo_top_Inicio_logins"></div>
+                <div class="btn-login-txt-esqueci"></div>
+                <div class="btn-back-votar offClick" id="Entrar"></div>
+
+
+
+                <div class="row_padrao">
+
+                <div class="col_meio_center place_">
+                  <span class="titulo_input_">E-MAIL</span><br>
+                  <input type="text"  class="input_novo2_" id="campo-esqueci-email"   style="width:100%;" placeholder="Digite o E-mail">
+                </div>
+
+
+
+                <div class="offClick btn_padrao" onclick="recupera();">
+                  <a href="javascript:void(0);" class="bt-destaqueEntrada">
+                    <i class=""></i>
+                    Recuperar
+                  </a>
+
+                </div>
+
+
+                <div class="error_azul" id="erro_login"></div>
+
+
+
+
+              </div>
+
+
+            </div>
+        </div>
+        <!-- FIM: pagina CADASTRO -->
+
+
+
+
+        <!-- INICIO: pagina CADASTRO -->
+        <div class="upage hidden" id="esqueci" >
+            <div class="upage-outer">
+
+                <div class="logo_top_Inicio_logins"></div>
+                <div class="btn-login-txt-esqueci"></div>
+                <div class="btn-back-votar offClick" id="Entrar"></div>
+
+
+
+                <div class="row_padrao">
+
+                <div class="col_meio_center place_">
+                  <span class="titulo_input_">E-MAIL</span><br>
+                  <input type="text"  class="input_novo2_" id="campo-esqueci-email"   style="width:100%;" placeholder="Digite o E-mail">
+                </div>
+
+
+
+                <div class="offClick btn_padrao" onclick="recupera();">
+                  <a href="javascript:void(0);" class="bt-destaqueEntrada">
+                    <i class=""></i>
+                    Recuperar
+                  </a>
+
+                </div>
+
+
+                <div class="error_azul" id="erro_login"></div>
+
+
+
+
+              </div>
+
+
+            </div>
+        </div>
+        <!-- FIM: pagina CADASTRO -->
+
+
+        <!-- INICIO: pagina BASE -->
+        <div class="upage hidden" id="base" >
+            <div class="upage-outer" id="retorno_base">
+
+
+                <div class="header headS">
+                  <!--<div class="chat-xv offClick" id="chat-xv" onclick="abreSidebarChat();"  style="display: block;"></div>
+                  <div class="logo_top_header"></div>-->
+
+                </div>
+                <div class="btn_menu_header">
+                  <button id="btn-menu-topo" type="button" onclick="btnMenuTopo();" class="btn-header-menu btn-menu-topo">
+                    <i class="icon sandwich"></i>
+                  </button>
+                </div>
+
+                  <!-- slide left -->
+
+
+                  <div class="upage-content"></div>
+                      <div class="sidebar-right" id="sidebar-right-perfilUser"></div>
+                      <div class="sidebar-left" id="sidebar-left">
+                      <span class="menu_interno" id="menu_pg_base"></span>
+                      </div>
+
+                  <!-- FIm: slide left -->
+
+
+
+                <div id="return-base" class="return-base"></div>
+
+
+
+
+            </div>
+        </div>
+        <!-- INICIO: pagina BASE -->
+
+
+
+        <!-- INICIO: pagina BASE -->
+        <div class="upage hidden" id="maps" >
+
+            <div class="upage-outer" id="retorno_base">
+
+
+                <div class="header headS">
+                  <!--<div class="chat-xv offClick" id="chat-xv" onclick="abreSidebarChat();"  style="display: block;"></div>
+                  <div class="logo_top_header"></div>-->
+
+                </div>
+                <div class="btn_menu_header">
+                  <button id="btn-menu-topo" type="button" onclick="btnMenuTopo();" class="btn-header-menu btn-menu-topo">
+                    <i class="icon sandwich"></i>
+                  </button>
+                </div>
+
+                  <!-- slide left -->
+
+
+                  <div class="upage-content"></div>
+                      <div class="sidebar-right" id="sidebar-right-perfilUser"></div>
+                      <div class="sidebar-left" id="sidebar-left">
+                       <span class="menu_interno" id="menu_pg_maps"></span>
+                      </div>
+
+                  <!-- FIm: slide left -->
+
+                <div id="return-mapa" class="return-mapa">
+                <div id="mapa" class="mapa-div"></div>
+                </div>
+                <button class="hidden" id="mapaClick">Mapa</button>
+                <input type="hidden" id="tipo_ti_ti">
+
+                <div class="fr_"id="fr_busca"></div>
+                <span id="solicita_profi"></span>
+
+
+
+
+            </div>
+        </div>
+        <!-- INICIO: pagina BASE -->
+
+
+
+
+
+
+
+        <!-- INICIO: pagina MENSAGENS -->
+        <div class="upage hidden" id="perfil">
+            <div class="upage-outer">
+              <div class="header">
+                <div class="chat-xv offClick" id="chat-xv" onclick="abreSidebarChat();"  style="display: block;"></div>
+                <div class="logo_top_header"></div>
+                <button id="btn-menu-topo" type="button" onclick="btnMenuTopo();" class="btn-header-menu btn-menu-topo">
+                  <i class="icon sandwich"></i>
+
+                </button>
+
+
+              </div>
+
+                <!-- slide left -->
+
+
+                <div class="upage-content"></div>
+                    <div class="sidebar-right" id="sidebar-right-perfil"></div>
+                    <div class="sidebar-left" id="sidebar-left">
+
+
+                        <div class="menu_inc_feeds"><i  class="icon-menu-feeds offClick" id="irPaginaFeeds"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-menu-perfil offClick" id="irPaginaPerfil"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-men-msg offClick" id="irPaginaMSG"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-menu-sair offClick" id="LogoutSair"></i> </div>
+
+
+
+                    </div>
+
+                <!-- FIm: slide left -->
+            </div>
+            <div class="perfil-imgx" id="perfil-imgx" onclick="escolheModoFoto();"></div>
+            <div class="perfil-nome"><span id="perfil-nome"></span></br><span  class="perfil-cidade" id="perfil-cidade"></span></div>
+        		<div class="perfil-icon-xs">
+
+
+        				<p class="perfil-icon-div" id="perfil-feeds-x"></p>
+        				<p class="perfil-icon-div" id="perfil-dados-x" onclick="alterarDados();"></p>
+        				<p class="perfil-icon-div" id="perfil-senha-x" onclick="alterarSenha();" ></p>
+
+                <div id="dados_perf">
+
+                  <input class="inputs_perfil_" id="nome_dados" type="text" placeholder="SEU NOME">
+                  <input class="inputs_perfil_" id="cidade_dados" type="text" placeholder="SUA CIDADE">
+                  <input class="inputs_perfil_" id="email_dados" type="text" placeholder="SEU EMAIL">
+                  <div class="btn-alterar-dados offClick" onclick="updatePerfil();"></div>
+
+                </div>
+
+
+
+        		</div>
+
+
+
+            <span id="conteudo_retorno_perfil"></span>
+
+
+
+            <!--INICIO: player rodape-->
+            <div class="player-rodape">
+              <div class="player-vol-menos offClick" onclick="volume('menos')"></div>
+              <span id="acaoPlay" class="acaoPlay">
+                <div class="player-pause offClick" id="btnPlay" onclick="stoped()"></div>
+              </span>
+              <div class="player-vol-mais offClick" onclick="volume('mais')"></div>
+            </div>
+            <!--FIM: player rodape-->
+
+        </div>
+        <!-- FIM: pagina MENSAGENS -->
+
+        <!-- INICIO: pagina MENSAGENS -->
+        <div class="upage hidden" id="perfilUser">
+            <div class="upage-outer">
+              <div class="header">
+                <div class="chat-xv offClick" id="chat-xv" onclick="abreSidebarChat();"  style="display: block;"></div>
+                <div class="logo_top_header"></div>
+                <button id="btn-menu-topo" type="button" onclick="btnMenuTopo();" class="btn-header-menu btn-menu-topo">
+                  <i class="icon sandwich"></i>
+
+                </button>
+
+
+              </div>
+
+                <!-- slide left -->
+
+
+                <div class="upage-content"></div>
+                    <div class="sidebar-right" id="sidebar-right-perfilUser"></div>
+                    <div class="sidebar-left" id="sidebar-left">
+
+
+                        <div class="menu_inc_feeds"><i  class="icon-menu-feeds offClick" id="irPaginaFeeds"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-menu-perfil offClick" id="irPaginaPerfil"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-men-msg offClick" id="irPaginaMSG"></i> </div>
+                        <div class="menu_inc_feeds"><i  class="icon-menu-sair offClick" id="LogoutSair"></i> </div>
+
+
+
+                    </div>
+
+                <!-- FIm: slide left -->
+            </div>
+            <div class="perfil-imgx2" id="perfil-imgx2"></div>
+            <div class="perfil-nome2"><span id="perfil-nome2"></span></br><span  class="perfil-cidade2" id="perfil-cidade2"></span></div>
+            <div class="perfil-icon-xs">
+
+            </div>
+
+
+
+            <!--INICIO: player rodape-->
+            <div class="player-rodape">
+              <div class="player-vol-menos offClick" onclick="volume('menos')"></div>
+              <span id="acaoPlay" class="acaoPlay">
+                <div class="player-pause offClick" id="btnPlay" onclick="stoped()"></div>
+              </span>
+              <div class="player-vol-mais offClick" onclick="volume('mais')"></div>
+            </div>
+            <!--FIM: player rodape-->
+
+        </div>
+        <!-- FIM: pagina MENSAGENS -->
+
+
+
+
+
+
+
+    </body>
+
+</html>
