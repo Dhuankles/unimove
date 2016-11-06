@@ -369,7 +369,7 @@ font-size:11px;
 }
 
 .alert_sucess_user{
-	background-color:rgba(45, 75, 215, 0.95);
+	background-color:#744674;
     color: #fff;
     padding: 23px;
     position: fixed;
@@ -384,6 +384,25 @@ font-size:11px;
     top: 50%;
 		display: none;
 }
+
+.alert_sucess_user2{
+	background-color:#744674;
+    color: #fff;
+    padding: 23px;
+    position: fixed;
+    z-index: 8888;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 50%;
+    width: 300px;
+    margin-left: -150px;
+    text-align: center;
+    top: 30%;
+		display: none;
+}
+
+
 .btn-solicitar{
     padding: 22px;
     background-color:rgba(20, 39, 56, 0.92);
@@ -2719,7 +2738,7 @@ position: fixed;
 }
 
 .BkgBase{
-	background-image: url(../images/mapa.jpg);
+	background-image: url(../images/bg-light.jpg);
   background-position: center;
 
 	background-repeat:no-repeat;

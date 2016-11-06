@@ -35,7 +35,7 @@ function menuInterno(pagina){
 
 	html = '<div class="menu_inc_feeds"><i  class="icon-menu-perfil offClick" id="" onclick="PgBuscaonfiguracoes();"><div class="foto_menu_perfil" style="background-image: url(http://www.fastmedicamentos.com.br/IZE/imgs/'+foto+');"></div> <div class="nome_menu">'+nome+'</div></i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-home offClick" id="" onclick="PgBuscaSimples();">Inicio</i> </div>'
-                          +'<div class="menu_inc_feeds"><i  class="icon-menu-ajuda offClick" id="" onclick="PgAjuda();">Ajuda</i> </div>'
+                          +'<div class="menu_inc_feeds"><i  class="icon-menu-ajuda offClick" id="" onclick="PgAjuda();">Fale Conosco</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-men-sobre offClick" onclick="PgSobre();" id="">Sobre</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-config offClick" onclick="PgBuscaonfiguracoes();">Configurações</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-sair offClick" id="LogoutSair">Sair</i> </div>'
@@ -118,6 +118,11 @@ function abreSemConexao(){
 }
 function PgBuscaSimples(){
 
+  var nome = window.localStorage.getItem("NOME");
+  var pontos = window.localStorage.getItem("PONTOS");
+
+
+
   mudaHeader(1);
 	menuInterno('menu_pg_base');
    $('#irPaginaBase').trigger('click');
@@ -128,7 +133,7 @@ function PgBuscaSimples(){
        +'<div class="ret_container" >'
        +'<div class="resumo_geral">'
        +'<div class="pictire_home"></div>'
-       +'<div class="resumoPoints" > Dhuankles Castro <br> <span class="my_txt_"><br>Meus Pontos<br><span class="t_points">800 Pontos</span></span></div>'
+       +'<div class="resumoPoints" >'+nome+' <br> <span class="my_txt_"><br>Meus Pontos<br><span class="t_points" id="points_"></span></span></div>'
 
        +'<div>'
 
@@ -136,15 +141,9 @@ function PgBuscaSimples(){
        +'<div class="minha_trans offClick"><div>'
        +'<div class="app_cadast offClick"><div>'
        +'<div class="convidar_ami offClick"><div>'
-
-
-
-
-
-
-
        $('#return-base').html(html);
-       checkConnection();
+       $('#points_').html(pontos+' Pontos');
+        checkConnection();
 
 
 
@@ -461,6 +460,40 @@ function loginCriado(){
        checkConnection();
 }
 
+
+function boasVindas(){
+
+	 menuInterno('menu_pg_base');
+   $('#irPaginaBase').trigger('click');
+   $('#base').addClass('BkgBase2');
+   $('#base').removeClass('BkgBaseSemConexao');
+
+  var nome = window.localStorage.getItem("NOME");
+  var sexo = window.localStorage.getItem("SEXO");
+
+  if(sexo=='M'){
+    var bem = 'Bem vindo!';
+
+  }else{
+    var bem = 'Bem vinda!'
+  }
+
+   var html ='<div class="titulo_header_top4">Cadastro</div>'
+        +'<div class="ret_container" >'
+
+
+
+	    +'<div class="tituloIZE_">Olá <b>'+nome+'</b><br>Seja '+bem+' ao Unimove</div>'
+	    +'</div>'
+
+       $('#return-base').html(html);
+       checkConnection();
+
+         setTimeout(function() {PgBuscaSimples()}, 4000);
+
+
+}
+
 function confereCodigo(){
 inserirCpf();
 
@@ -478,11 +511,11 @@ function inserirCpf(){
 	      +'<div class="tituloIZE2_"><b>Você acaba de conquistar 30 Pontos!</b> <br>Para armazenar precisamos vincular seu CPF<br><br>Pode Informar?</div>'
         +'<div class="marginvinte2">'
         +'<div class="camposBusca">'
-        +'<input type="tel" class="code" name="cel" id="code" autocomplete="off" placeholder="Digite o CPF">'
+        +'<input type="tel" class="code" name="cel" id="cpf_cad" autocomplete="off" placeholder="Digite o CPF" onkeyup="confereCPF();">'
         +'</div>'
         +'</div>'
 
-        +'<div class="offClick btn_padrao" style="margin-top:10px;">'
+        +'<div class="offClick btn_padrao" style="margin-top:10px;" onclick="PgBuscaSimples();">'
         +'<a href="javascript:void(0);" class="bt-destaquePular">'
         +'Pular</a>'
         +'</div>'
@@ -616,16 +649,85 @@ function PgAjuda(){
   $('#base').addClass('BkgBase');
   $('#base').removeClass('BkgBaseSemConexao');
 
+    var   nome   = window.localStorage.getItem("NOME") || '';
 
-    html = '<div class="titulo_header_top4" style="color:#fff; font-size:23px;">Ajuda</div>'
+    if(nome==''){
+
+      var campo = '<input type="hidden" id="tem_nome" value="0"><span class="titulo_input_">NOME</span><br><input type="tel" maxlength="80" class="input_novo2_" id="nome_ajuda" placeholder="Digite seu nome">';
+      var msg = 'Deixe sua mensagem Preenchendo <br>os campos abaixo!';
+
+    }else{
+      var campo = '<input type="hidden" id="tem_nome" value="1">';
+      var msg = 'Deixe sua mensagem Preenchendo <br>o campo abaixo!';
+    }
+    html = '<div class="titulo_header_top4" style="color:#fff; font-size:23px;">Fale Conosco</div>'
        //+'<div class="logo_top_Inicio_base2"></div>'
-       +'<div class="info_sobre"><span class="titulo_sobre">Principais Dúvidas</span><br><span class="titulo_sobre2">Sobre o Unimove</span></div>'
-       +'<div class="info_sobre3"><span class="titulo_sobre">Facilidade e Confiança</span><br><span class="titulo_sobre3">Voçê mesmo avalia a cada profissional, desde o atendimento'
-       +'ao preço e também por indicação de amigos de uma forma bem segura. </span></div>'
+
+
+       +'<div class="info_sobre"><span class="titulo_sobre">Se Precisar falar conosco!</span><br><span class="titulo_sobre2">'+msg+'</span></div>'
+
+
+       +'<div class="info_sobre3">'
+
+
+       +'<div class="col_meio_center place_">'+campo
+       +'</div>'
+
+
+
+       +'<div class="col_meio_center place_">'
+       +'<span class="titulo_input_">MENSAGEM</span><br>'
+       +'<textarea maxlength="140" class="input_novo2_" style=" width:100%; height:80px;" id="mesagem_ajuda" placeholder="Digite uma mensagem"></textarea>'
+       +'</div>'
+
+        +'<div class="offClick btn_padrao"  onClick="disparaMensagem();">'
+        +'<a href="javascript:void(0);" class="bt-destaqueEntrada">'
+        +'<i class=""></i>Enviar</a>'
+        +'</div>'
+        +'<div class="error_azul" id="erro_envia_contato"></div>'
+        +'<div class="alert_sucess_user2" id="alert_sucess_contato">Obrigado! <br>Mensagem enviada com sucesso.</div>'
+
+
+
+       +'</div>'
 
 
        $('#return-base').html(html);
 }
+
+
+function disparaMensagem(){
+
+  var tem_nome = $('#tem_nome').val() || '';
+  var mensagem = $('#mesagem_ajuda').val() || '';
+  var nome = $('#nome_ajuda').val() || '';
+
+ if(mensagem!=''){
+
+
+  $('#mascara2').fadeIn('slow');
+  $('#loadd_').html('Aguarde...');
+
+
+  setTimeout(function() {
+      $('#mascara2').fadeOut('slow');
+      $('#alert_sucess_contato').fadeIn('slow');
+      $('#mesagem_ajuda').val('');
+      $('#nome_ajuda').val('');
+  }, 1000)
+
+  setTimeout(function() {
+      $('#alert_sucess_contato').fadeOut('slow');
+
+  }, 3000)
+
+}else{
+    $('#erro_envia_contato').html('Ops! Preencha todos os campos corretamente.');
+}
+
+}
+
+
 
 function PgSobre(){
   mudaHeader(1)

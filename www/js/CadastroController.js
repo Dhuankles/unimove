@@ -87,6 +87,140 @@
   ////FIM: CADASTRO
 
 
+  function confereCPF(){
+
+         $("#erro_cadastro").html("Aguarde... registrando");
+          var cpf      = $("#cpf_cad").val()||'';
+
+          if(cpf.length==11){
+
+                   $('#mascara2').fadeIn('slow');
+                   $('#loadd_').html('Aguarde...');
+
+   var IDUser = window.localStorage.getItem("IDUser");
+   var xhr = new XMLHttpRequest();
+
+
+       // Consumir a API...
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+
+          var json = JSON.parse(xhr.responseText);
+          //console.log(json.PF.DADOS.NOME)
+
+
+            if(json.PF.DADOS.NOME!=''){
+
+              var name = json.PF.DADOS.NOME;
+              var x = name.split(" ");
+
+              var primeiroNome = x[0];
+
+              var arr1 = x[1] || '';
+              var arr2 = x[2] || '';
+              var arr3 = x[3] || '';
+              var arr4 = x[4] || '';
+              var arr5 = x[5] || '';
+              var sobreNome = arr1+' '+arr2+' '+arr3+' '+arr4+' '+arr5;
+
+
+              window.localStorage.setItem("NOME", primeiroNome);
+              window.localStorage.setItem("SOBRENOME", sobreNome);
+              window.localStorage.setItem("CPF", json.PF.DADOS.CPF);
+              window.localStorage.setItem("SEXO", json.PF.DADOS.SEXO);
+              window.localStorage.setItem("PONTOS", 30);
+              salvaCPF(primeiroNome,sobreNome,cpf);
+
+
+             $("#erro_cadastro").html('');
+
+             //$("#nome_cadastro").val('');
+             //$("#sobrenome_cadastro").val('');
+             $("#celular_cadastro").val('');
+             $("#email_cadastro").val('');
+             $("#senha_cadastro").val('');
+
+              
+
+           }else{
+             $("#erro_cadastro").html("O servidor não conseguiu processar o pedido. Tente novamente mais tarde...");
+           }
+
+
+
+          }
+        };
+
+
+            var data = 'empresa=horizon-four';
+            data += '&usuario=horizon-four';
+            data += '&senha=Abraao@2016';
+            data += '&cpf='+cpf;
+            //data += '&latitude='+lat;
+
+
+     xhr.open('POST', 'http://fastmedicamentos.com.br/UNI/cpf.php', true);
+     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+     xhr.send(data);
+   }else{
+     $("#erro_cadastro").html("CFP inválido...");
+
+   }
+
+     }
+
+
+
+     function salvaCPF(nome,sobrenome,cpf){
+
+
+      $("#erro_cadastro").html("Aguarde... registrando");
+
+      var IDUser = window.localStorage.getItem("IDUser");
+      var xhr = new XMLHttpRequest();
+
+          // Consumir a API...
+
+         xhr.onreadystatechange = function () {
+           if (xhr.readyState == 4) {
+
+             var json = eval(xhr.responseText);
+
+             $.each(json, function(i, arr) {
+
+               if(arr.status!=0){
+
+                $("#erro_cadastro").html('');
+
+                setTimeout(function() {
+                  $('#mascara2').fadeOut('slow');
+                    boasVindas();
+                }, 2000)
+
+
+
+
+              }else{
+                $("#erro_cadastro").html("O servidor não conseguiu processar o pedido. Tente novamente mais tarde...");
+              }
+
+             });
+
+             }
+           };
+
+               var data = 'nome='+nome;
+               data += '&sobrenome='+sobrenome;
+               data += '&tipo=cpf';
+               data += '&IDUser='+IDUser;
+               data += '&cpf='+cpf;
+
+        xhr.open('POST', 'http://fastmedicamentos.com.br/UNI/usuarios.php', true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send(data);
+
+        }
   /// INICIO CADASTRO...
          function cadastra(){
 
@@ -117,7 +251,7 @@
                switch (json[0].conect){
                  case 'x':
                  insereCadastro(celular,email,senha);
-                 
+
                  break;
 
                  case 'y':
