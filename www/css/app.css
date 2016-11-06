@@ -1681,13 +1681,18 @@ text-align: center;
 .resumo_geral{
 	background-color: #967696;
 	position: fixed;
-	width: 80%;
+	width: 90%;
 	border-radius: 10px;
 	height: 120px;
 	top: 100px;
 	left: 50%;
-	margin-left: -40%;
+	margin-left: -45%;
 }
+.
+.pictire_home{ float: left; border-radius: 90px; width: 80px; height: 80px; background-color: #ccc; margin-left: 10px; }
+.resumoPoints{ float: left; }
+
+
 .icon-menu-sair{
 
 	width: 44px;

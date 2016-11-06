@@ -127,14 +127,11 @@ function PgBuscaSimples(){
 
    html = ''
        +'<div class="ret_container" >'
-       +'<div class="resumo_geral"></div>'
-
+       +'<div class="resumo_geral">'
+       +'<div class="pictire_home"></div>'
+       +'<div class="resumoPoints">Dhuankles Castro<br> <span>Meus Pontos<br><span class="t_points">800 Pontos</span></span></div>'
 
        +'<div>'
-      //dhuankles  +'<button onclick="resultadoBusca();">Busca</button>'
-
-
-
 
 
        +'<a href="javascript:void(0);" class="bt-destaqueBUSCA" onclick="PgOferecerServicos();">'
