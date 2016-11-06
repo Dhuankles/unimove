@@ -15,15 +15,11 @@ $('#menu_abre_foto').fadeOut('slow');
 function PgBuscaonfiguracoes(){
 
      $('#conexaoVerifica').trigger('click');
-mudaHeader(0);
- menuInterno('menu_pg_base');
- $('#irPaginaBase').trigger('click');
- $('#base').removeClass('BkgBase');
- $('#base').removeClass('BkgBase2');
- $('#base').removeClass('BkgBase3');
- $('#base').removeClass('BkgBaseSol');
- $('#base').addClass('Bkginicial');
- $('#base').removeClass('BkgBaseSemConexao');
+     mudaHeader(1)
+   	 menuInterno('menu_pg_base');
+     $('#irPaginaBase').trigger('click');
+     $('#base').addClass('BkgBase');
+     $('#base').removeClass('BkgBaseSemConexao');
 
 
   var nome = window.localStorage.getItem("NOME")||'';
@@ -62,22 +58,22 @@ mudaHeader(0);
   +'<div class="row_padrao" style="margin-top: 43%;">'
   +'<div class="col_meio_left place_">'
   +'<span class="titulo_input_interna">PRIMEIRO NOME</span>'
-  +'<input type="text" class="input_novo_" value="'+nome+'" id="nome_config" placeholder="Digite seu Nome">'
+  +'<input type="text" class="input_novo2_" value="'+nome+'" id="nome_config" placeholder="Digite seu Nome">'
   +'</div>'
   +'<div class="col_meio_right place_">'
   +'<span class="titulo_input_interna">SOBRENOME</span>'
-  +'<input type="text" class="input_novo_" value="'+sobrenome+'" id="sobrenome_config" placeholder="Digite seu Sobrenome">'
+  +'<input type="text" class="input_novo2_" value="'+sobrenome+'" id="sobrenome_config" placeholder="Digite seu Sobrenome">'
   +'</div>'
   +'<div class="limpa"></div>'
 
   +'<div class="col_meio_center place_">'
   +'<span class="titulo_input_interna">CELULAR</span><br>'
-  +'<input type="tel" maxlength="13" class="input_novo_" id="celular_config" value="'+celular+'" placeholder="00-0000-00000">'
+  +'<input type="tel" maxlength="13" class="input_novo2_" id="celular_config" value="'+celular+'" placeholder="00-0000-00000">'
   +'</div>'
 
   +'<div class="col_meio_center place_">'
   +'<span class="titulo_input_interna">E-MAIL</span><br>'
-  +'<input type="text" maxlength="60" disabled="disabled" style="width:100%;"  value="'+email+'" class="input_novo_" placeholder="Digite o E-mail">'
+  +'<input type="text" maxlength="60" disabled="disabled" style="width:100%;"  value="'+email+'" class="input_novo2_" placeholder="Digite o E-mail">'
   +'</div>'
 
 

@@ -37,7 +37,6 @@ function menuInterno(pagina){
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-home offClick" id="" onclick="PgBuscaSimples();">Inicio</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-ajuda offClick" id="" onclick="PgAjuda();">Ajuda</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-men-sobre offClick" onclick="PgSobre();" id="">Sobre</i> </div>'
-                          +'<div class="menu_inc_feeds"><i  class="icon-menu-notificacao offClick" id="">Notificação</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-config offClick" onclick="PgBuscaonfiguracoes();">Configurações</i> </div>'
                           +'<div class="menu_inc_feeds"><i  class="icon-menu-sair offClick" id="LogoutSair">Sair</i> </div>'
 
@@ -125,18 +124,22 @@ function PgBuscaSimples(){
    $('#base').addClass('BkgBase');
    $('#base').removeClass('BkgBaseSemConexao');
 
-   html = ''
+   html = '<div class="titulo_header_top4" style="color:#fff; font-size:23px;">unimove</div>'
        +'<div class="ret_container" >'
        +'<div class="resumo_geral">'
        +'<div class="pictire_home"></div>'
-       +'<div class="resumoPoints">Dhuankles Castro<br> <span>Meus Pontos<br><span class="t_points">800 Pontos</span></span></div>'
+       +'<div class="resumoPoints" > Dhuankles Castro <br> <span class="my_txt_"><br>Meus Pontos<br><span class="t_points">800 Pontos</span></span></div>'
 
        +'<div>'
 
+       +'<div class="tnsf_pont offClick"><div>'
+       +'<div class="minha_trans offClick"><div>'
+       +'<div class="app_cadast offClick"><div>'
+       +'<div class="convidar_ami offClick"><div>'
 
-       +'<a href="javascript:void(0);" class="bt-destaqueBUSCA" onclick="PgOferecerServicos();">'
-       +'<i class=""></i><span style="font-size:11px;">OFERECER MEUS SERVIÇOS</span></a>'
-       +'</div>'
+
+
+
 
 
 
@@ -607,70 +610,36 @@ function insereTopCss(){
 
 }
 function PgAjuda(){
-  mudaHeader(0);
+  mudaHeader(1);
 	menuInterno('menu_pg_base');
-   $('#irPaginaBase').trigger('click');
-   $('#base').removeClass('BkgBase');
-   $('#base').removeClass('BkgBase2');
-   $('#base').addClass('BkgBase3');
-   $('#base').removeClass('BkgBaseSemConexao');
+  $('#irPaginaBase').trigger('click');
+  $('#base').addClass('BkgBase');
+  $('#base').removeClass('BkgBaseSemConexao');
 
 
-     html = '<div class="titulo_header_top2">Ajuda</div>'
+    html = '<div class="titulo_header_top4" style="color:#fff; font-size:23px;">Ajuda</div>'
        //+'<div class="logo_top_Inicio_base2"></div>'
-       +'<div class="info_sobre"><span class="titulo_sobre">Principais Dúvidas</span><br><span class="titulo_sobre2">Sobre o IZE</span></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre"><a href="#como_funciona">Como Funciona o IZE?</a></span></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre"><a href="#como_ofereco">Como Ofereço Meus Serviços?</a></span></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre"><a href="#pago_divulgar">Pago alguma coisa para divulgar?</a></span></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre"><a href="#como_sou_avaliado">Como sou Avaliado?</a></span></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre"><a href="#posso_ser_banido">Posso ser banido?</a></span></div>'
-
-       +'<div class="info_sobre3"><a name="como_funciona"></a><div class="esPadding"></div><span class="titulo_sobre">Como Funciona o IZE?</span><br><span class="titulo_sobre3">O IZE é um App que veio para facilitar a vida de muitas pessoas'
-       +' que precisam de um profissional, em diversas áreas, tais com; Eletricistas, Chaveiros, Guincho e Ate Moto taxi, entre ouras áreas. É muito facil usar,'
-       +' basta apenas se cadastrar, buscar por um profisional próximo a você e pronto é Simple e totalmente Grãtis!</span></div>'
-
-       +'<div class="info_sobre3"><a name="como_ofereco">&nbsp;</a><div class="esPadding"></div><span class="titulo_sobre">Como Ofereço Meus Serviços?</span><br><span class="titulo_sobre3">Com IZE é muito simples! Clique no menu Meus serviços ou no botão Oferecer meus Serviços,'
-       +' na tela que se abre informe corretamente o seus dados como uma breve descrição do que você faz, e por fim clique no botão para estar disponível. A partir deste momento '
-       +' você jã esta habilitado!</span></div>'
-
-       +'<div class="info_sobre3"><a name="pago_divulgar">&nbsp;</a><div class="esPadding"></div><span class="titulo_sobre">Pago alguma coisa para divulgar?</span><br><span class="titulo_sobre3">O IZE é totalmente Gratis, Quem avalia você, são os proprios usuários, a medida que você atende um cliente.'
-       +'</span></div>'
-
-
-
-       +'<div class="info_sobre3"><a name="como_sou_avaliado">&nbsp;</a><div class="esPadding"></div><span class="titulo_sobre">Como sou Avaliado?</span><br><span class="titulo_sobre3">NO IZE, Quem avalia você, são os próprios usuários, juntamente com nossos algoritimos, fique atento em estar disponível e não atender um cliente, isso tambem conta pontos a seu favor. Então quando não tiver disponivel desative, '
-       +' Tornando indisponivel. Lembre-se você escolhe quando quer trabalhar!</span></div>'
-
-       +'<div class="info_sobre3"><a name="posso_ser_banido">&nbsp;</a><div class="esPadding"></div><span class="titulo_sobre">Posso ser banido?</span><br><span class="titulo_sobre3">Sim! ao desrespeitar a politica de privacidade você pode inclusive perder seu perfil e reputação! Não crie perfils falsos, Lembre-se você tem uma reputação a Zelar! '
-       +' Tornando indisponivel. Lembre-se você escolhe quando quer trabalhar!</span></div>'
-
-
-
+       +'<div class="info_sobre"><span class="titulo_sobre">Principais Dúvidas</span><br><span class="titulo_sobre2">Sobre o Unimove</span></div>'
        +'<div class="info_sobre3"><span class="titulo_sobre">Facilidade e Confiança</span><br><span class="titulo_sobre3">Voçê mesmo avalia a cada profissional, desde o atendimento'
        +'ao preço e também por indicação de amigos de uma forma bem segura. </span></div>'
-       +'<div class="div_img_sobre"><img class="img_sobre2" src="images/encontre.png"  /></div>'
+
 
        $('#return-base').html(html);
 }
 
 function PgSobre(){
-  mudaHeader(0)
+  mudaHeader(1)
 	menuInterno('menu_pg_base');
-   $('#irPaginaBase').trigger('click');
-   $('#base').removeClass('BkgBase');
-   $('#base').removeClass('BkgBase2');
-   $('#base').addClass('BkgBase3');
-   $('#base').removeClass('BkgBaseSemConexao');
-     html = '<div class="titulo_header_top2">IZE</div>'
-       //+'<div class="logo_top_Inicio_base2"></div>'
-       +'<div class="info_sobre"><span class="titulo_sobre">É Facil</span><br><span class="titulo_sobre2">Rápido e Grátis</span></div>'
-       +'<div class="div_img_sobre"><img class="img_sobre" src="images/encanador.jpg"  /></div>'
-       +'<div class="info_sobre2"><span class="titulo_sobre">Precisa de um Profissional?</span><br><span class="titulo_sobre3">O Ize é a maneira mais inteligente de Solicitar um Profissional.'
-       +' Basta Consultar no App, verificar o mais próximo de você  ver a reputação e Solicitar. </span></div>'
+  $('#irPaginaBase').trigger('click');
+  $('#base').addClass('BkgBase');
+  $('#base').removeClass('BkgBaseSemConexao');
 
-       +'<div class="info_sobre2"><span class="titulo_sobre">Facilidade e Confiança</span><br><span class="titulo_sobre3">Voçê mesmo avalia a cada profissional, desde o atendimento'
-       +'ao preço e também por indicação de amigos de uma forma bem segura. </span></div>'
-       +'<div class="div_img_sobre"><img class="img_sobre2" src="images/encontre.png"  /></div>'
+     html = '<div class="titulo_header_top4" style="color:#fff; font-size:23px;">Sobre</div>'
+       //+'<div class="logo_top_Inicio_base2"></div>'
+       +'<div class="info_sobre"><span class="titulo_sobre">Desenvolvido por:</span><br><span class="titulo_sobre2">Horizon Four</span></div>'
+
+       +'<div class="info_sobre2"><span class="titulo_sobre">www.horizonfour.com.br</span><br>'
+
 
        $('#return-base').html(html);
 }

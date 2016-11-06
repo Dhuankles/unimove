@@ -117,7 +117,7 @@
                switch (json[0].conect){
                  case 'x':
                  insereCadastro(celular,email,senha);
-                 alert();
+                 
                  break;
 
                  case 'y':

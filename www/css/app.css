@@ -282,11 +282,11 @@ font-size:11px;
 .fundo_bk_foto{
 	position: absolute;
     z-index: 4444;
-    background-color: rgba(66, 139, 202, 0.39);
+    background-color: #967696;
     width: 100%;
     height: 133px;
     margin-top: 0px;
-    border-bottom: 1px solid rgba(66, 139, 202, 0.62);
+    border-bottom: 1px solid #866686;
 }
 .hidden_{
 	display: none;
@@ -300,10 +300,10 @@ font-size:11px;
 	height: 80px;
 	margin-top: 20px;
 	border-radius: 90px;
-	background-color: #4A5E84;
+	background-color: #744674;
 	position: absolute;
 	left: 50%;
-	border: 3px solid #428bca;
+	border: 3px solid #866686;
 	margin-left: -40px;
 	z-index: 5555;
 	background-position: center;
@@ -455,7 +455,7 @@ font-size:11px;
 
 	}
 .txt-esqueci-senha{color:#6E436E; font-size: 11px; margin-left: 5%; padding: 10px; padding-left: 0; margin-top: 10px;}
-.error_azul{ color:#fff; font-size: 11px; margin-left: 5%;}
+.error_azul{ color:#744674; font-size: 11px; margin-left: 5%;}
 .col_meio_center{width: 90%; margin-left: 5%; border-bottom: 1px solid #9A7B9A;  color: #fff}
 .col_meio_left{ float: left; width: 40%; margin-left: 5%; margin-right: 5px;border-bottom: 1px solid #9A7B9A;color: #fff}
 .col_meio_right{ float:left; width: 50%; border-bottom: 1px solid #9A7B9A; color: #fff}
@@ -1683,14 +1683,102 @@ text-align: center;
 	position: fixed;
 	width: 90%;
 	border-radius: 10px;
-	height: 120px;
+	height: 105px;
 	top: 100px;
 	left: 50%;
 	margin-left: -45%;
 }
-.
-.pictire_home{ float: left; border-radius: 90px; width: 80px; height: 80px; background-color: #ccc; margin-left: 10px; }
-.resumoPoints{ float: left; }
+
+.pictire_home{
+
+	float: left;
+	width: 70px;
+	height: 70px;
+	background-color: #ccc;
+	border-radius: 90px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	 }
+
+.resumoPoints{
+	 float: left;
+	 width: 60%;
+	 color: #fff;
+	 margin-top: 15px;
+	 line-height: 15px;
+
+  }
+
+.my_txt_{
+	font-size: 10px;
+	color: #fff;
+}
+.t_points{
+	font-size: 23px;
+	color: #fff;
+}
+
+.tnsf_pont{
+	width: 49%;
+	height: 95%;
+	float: left;
+	background-image: url(../images/transferir.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	left: 0%;
+	top: 135px;
+
+}
+.app_cadast{
+	width: 104%;
+	height: 95%;
+	float: left;
+	background-image: url(../images/apps.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	left: -112%;
+	top: 107px;
+
+}
+.minha_trans{
+	width: 97%;
+	height: 98%;
+	/* float: left; */
+	background-image: url(../images/transasoes.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	left: 108%;
+	top: 3px;
+}
+
+.convidar_ami{
+	width: 97%;
+	height: 100%;
+	/* float: left; */
+	background-image: url(../images/convidar.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	left: 106%;
+	top: -1px;
+}
+
 
 
 .icon-menu-sair{
